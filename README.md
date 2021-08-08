@@ -126,277 +126,228 @@ echo "With Alias, UFILES is: $B"
 ~~~
 ***
 ### Exercise 8
-Найти по имени файла и его пути все жесткие ссылки на него. 
+Create a script that interacts with the user. You will want to prompt the user to enter the following information (which you will capture and place into the following variables):
+- FIRSTNAME
+- LASTNAME
+- USERAGE<br/>
+Greet the user with their name and current age displayed and then calculate and display their age in 10 years.
 ~~~
-vagrant@ubuntu-xenial:~$ touch file8.txt
-vagrant@ubuntu-xenial:~$ ln file8.txt f_h_link
-vagrant@ubuntu-xenial:~$ ls -li
-total 12
-  2303 -rw-rw-r-- 1 vagrant vagrant    0 Feb 14 12:27 demo-dev
-256069 drwxrwxr-x 3 vagrant vagrant 4096 Jun 12 22:26 demo-devops
-  1387 -rw-rw-r-- 2 vagrant vagrant    0 Jun 12 23:35 f_h_link
-   126 -rw-rw-r-- 1 vagrant vagrant    0 Jun 12 22:47 file7.txt
-  1387 -rw-rw-r-- 2 vagrant vagrant    0 Jun 12 23:35 file8.txt
-   129 lrwxrwxrwx 1 vagrant vagrant    9 Jun 12 22:47 f_link -> file7.txt
-   122 -rw-rw-r-- 1 vagrant vagrant  536 Jun 12 21:00 out.txt
-256035 drwxrwxr-x 2 vagrant vagrant 4096 Jun 12 22:42 task_5
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ find -samefile file8.txt
-./f_h_link
-./file8.txt
+#!/bin/bash
+# interactive script for user input
+echo "Enter Your First Name: "
+read FIRSTNAME
+echo "Enter Your Last Name: "
+read LASTNAME
+echo ""
+echo "Your Full Name is: $FIRSTNAME $LASTNAME"
+echo ""
+echo "Enter Your Age: "
+read USERAGE
+echo "In 10 Years, You will be `expr $USERAGE + 10` years old."
 ~~~
 ***
 ### Exercise 9
-Имеется только inode файла найти все его имена. 
+Write a script intended to iterate through an array called SERVERLIST containing at least four values (server names). Display all four values to the terminal when run. 
 ~~~
-vagrant@ubuntu-xenial:~/task9$ touch file9.txt
-vagrant@ubuntu-xenial:~/task9$ ln file9.txt h_file9.txt
-vagrant@ubuntu-xenial:~/task9$ ls -li
-total 0
-277177 -rw-rw-r-- 2 vagrant vagrant 0 Jun 12 23:51 file9.txt
-277177 -rw-rw-r-- 2 vagrant vagrant 0 Jun 12 23:51 h_file9.txt
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ find -inum 277177
-./task9/file9.txt
-./task9/h_file9.txt
+#!/bin/bash
+# simple array list and loop for display
+SERVERLIST=("websrv01" "websrv02" "websrv03" "websrv04")
+COUNT=0
+for INDEX in ${SERVERLIST[@]}; do
+  echo "Processing Server: ${SERVERLIST[COUNT]}"
+  COUNT="`expr $COUNT + 1`"
+done
 ~~~
 ***
 ### Exercise 10
-Имеется только inode файла найти все его имена. Учтите, что может быть примонтированно несколько разделов.
+Create a script that, when run, will accept two command line values as arguments. These arguments should be a username and password and assigned to two variables in the script named appropriately. Finally, echo those values out to the terminal when run to indicate they were read and assigned as expected.
 ~~~
-vagrant@ubuntu-xenial:~$ find -mount -inum 277177
-./task9/file9.txt
-./task9/h_file9.txt
+#!/bin/bash
+# demo of command line values passed in with our shell script
+USERNAME=$1
+PASSWORD=$2
+echo "The following Username is $USERNAME and Password is $PASSWORD"
 ~~~
 ***
 ### Exercise 11
-Корректно удалить файл с учетом возможности существования символьных или жестких ссылок.
+Create a script that interacts with the user. Prompt them to guess a secret number between 1 and 5. Read the guess from the terminal and assign it to a variable. Using the 'if' statement from the course, test that value to determine if they guessed the right number (you choose the correct value). If they do, display a success message, otherwise do nothing.
 ~~~
-vagrant@ubuntu-xenial:~$ ls -li
-total 16
-  2303 -rw-rw-r-- 1 vagrant vagrant    0 Feb 14 12:27 demo-dev
-256069 drwxrwxr-x 3 vagrant vagrant 4096 Jun 12 22:26 demo-devops
-  1387 -rw-rw-r-- 2 vagrant vagrant    0 Jun 12 23:35 f_h_link
-   126 -rw-rw-r-- 1 vagrant vagrant    0 Jun 12 22:47 file7.txt
-  1387 -rw-rw-r-- 2 vagrant vagrant    0 Jun 12 23:35 file8.txt
-   129 lrwxrwxrwx 1 vagrant vagrant    9 Jun 12 22:47 f_link -> file7.txt
-   122 -rw-rw-r-- 1 vagrant vagrant  536 Jun 12 21:00 out.txt
-256035 drwxrwxr-x 2 vagrant vagrant 4096 Jun 12 22:42 task_5
-277176 drwxrwxr-x 2 vagrant vagrant 4096 Jun 12 23:51 task9
-~~~
-~~~
-vagrant@ubuntu-xenial:~/task9$ ls
-file9.txt  h_file9.txt
-vagrant@ubuntu-xenial:~/task9$ rm $(find -samefile file9.txt && find -lname h_file9.txt)
-vagrant@ubuntu-xenial:~/task9$ ls -li
-total 0
+#!/bin/bash
+# simple if script for guessing a number
+echo "Guess the Secret Number"
+echo "======================="
+echo ""
+echo "Enter a Number Between 1 and 5: "
+read GUESS
+if [ $GUESS -eq 3 ]
+  then
+    echo "You Guessed the Correct Number!"
+fi
 ~~~
 ***
 ### Exercise 12
-Рекурсивно изменить права доступа к файлам (задана маска файла) в заданной директории.
+Write a script that will prompt the user to enter a number between 1 and 3. Capture that number in a variable and then test that variable. Be sure to display the variable and it's value as appropriate within an if/then/else statement where the final statement will display if they did not enter a number between 1 and 3 telling them they failed to follow instructions. Redirect errors from each of the tests to /dev/null (to prevent script errors from showing if text is entered for example).
 ~~~
-vagrant@ubuntu-xenial:~$ ll -Rl task12/
-task12/:
-total 16
-drwxrwxr-x  4 vagrant vagrant 4096 Jun 13 00:08 ./
-drwxr-xr-x 10 vagrant vagrant 4096 Jun 13 00:08 ../
-drwxrwxr-x  2 vagrant vagrant 4096 Jun 13 00:08 1/
-drwxrwxr-x  2 vagrant vagrant 4096 Jun 13 00:09 2/
-
-task12/1:
-total 8
-drwxrwxr-x 2 vagrant vagrant 4096 Jun 13 00:08 ./
-drwxrwxr-x 4 vagrant vagrant 4096 Jun 13 00:08 ../
--rw-rw-r-- 1 vagrant vagrant    0 Jun 13 00:08 123
-
-task12/2:
-total 8
-drwxrwxr-x 2 vagrant vagrant 4096 Jun 13 00:09 ./
-drwxrwxr-x 4 vagrant vagrant 4096 Jun 13 00:08 ../
--rw-rw-r-- 1 vagrant vagrant    0 Jun 13 00:09 321
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ find . -type f -name '*' -exec chmod +x {} \;
-vagrant@ubuntu-xenial:~$ ll -Rl task12/
-task12/:
-total 16
-drwxrwxr-x  4 vagrant vagrant 4096 Jun 13 00:08 ./
-drwxr-xr-x 10 vagrant vagrant 4096 Jun 13 00:08 ../
-drwxrwxr-x  2 vagrant vagrant 4096 Jun 13 00:08 1/
-drwxrwxr-x  2 vagrant vagrant 4096 Jun 13 00:09 2/
-
-task12/1:
-total 8
-drwxrwxr-x 2 vagrant vagrant 4096 Jun 13 00:08 ./
-drwxrwxr-x 4 vagrant vagrant 4096 Jun 13 00:08 ../
--rwxrwxr-x 1 vagrant vagrant    0 Jun 13 00:08 123*
-
-task12/2:
-total 8
-drwxrwxr-x 2 vagrant vagrant 4096 Jun 13 00:09 ./
-drwxrwxr-x 4 vagrant vagrant 4096 Jun 13 00:08 ../
--rwxrwxr-x 1 vagrant vagrant    0 Jun 13 00:09 321*
+#!/bin/bash
+# simple example of if then else and nested if statements
+clear
+echo "Enter a number between 1 and 3:"
+read VALUE
+if [ "$VALUE" -eq "1" ] 2>/dev/null; then
+  echo "You entered #1"
+elif [ "$VALUE" -eq "2" ] 2>/dev/null; then
+  echo "You successfully entered #2"
+elif [ "$VALUE" -eq "3" ] 2>/dev/null; then
+  echo "You entered the 3rd number"
+else
+  echo "You didn't follow the directions!"
+fi
 ~~~
 ***
 ### Exercise 13
-13) Сравнить рекурсивно две директории и отобразить только отличающиеся файлы. * (вывести до 2 строки и после 3 строки относительно строки в которой найдено отличие). 
+Write a script that assigns a variable that contains a list of all shell scripts (*.sh) in the current directory (command redirection). Using the 'for'statement from the course, iterate through that list of files and display the filename of each and cat out the contents to the terminal. 
 ~~~
-vagrant@ubuntu-xenial:~$ tree task13/
-task13/
-├── folder1
-│   ├── file1
-│   ├── file2
-│   ├── file3
-│   └── sub_dir
-│       └── file4
-└── folder2
-    ├── file1
-    └── file2
-~~~
-~~~
-vagrant@ubuntu-xenial:~/task13$ find . -type f -exec basename {} \; | sort | uniq -u
-file3
-file4
+#!/bin/bash
+# this is a demo of the for loop
+echo "List all the shell scripts contents of the directory"
+SHELLSCRIPTS=`ls *.sh`
+for SCRIPT in $SHELLSCRIPTS; do
+  DISPLAY="`cat $SCRIPT`"
+  echo "File: $SCRIPT - Contents $DISPLAY"
+done
 ~~~
 ***
 ### Exercise 14
-14) Получить MAC-адреса сетевых интерфейсов.
+Develop a simple three item menu to display on the terminal. Your script, upon display of the menu, should prompt the user to choose one of the three available options. Using the 'case' statement from the course, display three unique messages depending on which number they chose, with a catch all message letting them know if they went outside the bounds of instructions.
 ~~~
-vagrant@ubuntu-xenial:~$ ifconfig | egrep "HWaddr " | cut -b 39-55
-02:bb:f4:57:e9:87
-08:00:27:c2:97:d0
+#!/bin/bash
+# demo of the case statement
+clear
+echo "MAIN MENU"
+echo "========="
+echo "1) Choice One"
+echo "2) Choice Two"
+echo "3) Choice Three"
+echo ""
+echo "Enter Choice: "
+read MENUCHOICE
+
+case $MENUCHOICE in
+  1)
+    echo "Congratulations for Choosing the First Option";;
+  2)
+    echo "Choice 2 Chosen";;
+  3) 
+    echo "Last Choice Made";;
+  *)
+    echo "You chose unwisely";;
+esac
 ~~~
 ***
 ### Exercise 15
-15) Вывести список пользователей, авторизованных в системе на текущий момент. 
+Create a script that prompts the user for a number. That number is to be used to display a simple message to the terminal X number of times (where X is the number captured from the user input). The message should include an indication of the number for each count the message is displayed. 
 ~~~
-vagrant@ubuntu-xenial:~$ who
-vagrant  pts/0        2020-06-12 20:43 (10.0.2.2)
+#!/bin/bash
+# while loop example
+echo "Enter the number of times to display the 'Hello World' message"
+read DISPLAYNUMBER
+COUNT=1
+while [ $COUNT -le $DISPLAYNUMBER ]
+do
+  echo "Hello World - $COUNT"
+  COUNT="`expr $COUNT + 1`"
+done
 ~~~
 ***
 ### Exercise 16
-16) Вывести список активных сетевых соединений в виде таблицы: тип состояния соединения и их количество. 
+Create a simple text file containing a list of super heros (or some names if preferred), use at least four values, one per line in the file. Write a bash shell script that then reads that file and displays it line by line on the terminal window. 
 ~~~
-vagrant@ubuntu-xenial:~$ ss -t | tail -n +2 | tr -s " " | cut -d' ' -f1 | sort | uniq -c
-      1 ESTAB
+#!/bin/bash
+# simple file reading (non-binary) and displaying one line at a time
+echo "Enter a filename to read: "
+read FILE
+while read -r SUPERHERO; do
+  echo "Superhero Name: $SUPERHERO"
+done < "$FILE"
 ~~~
 ***
 ### Exercise 17
-17) Переназначить существующую символьную ссылку.
+Create a simple text file containing a list of names (superheroes) and name it whatever you wish, should contain at least four values, one per line. Write a script that will use a file descriptor defined for both reading and writing to that file (pick an appropriate number greater than the system reserved handles as talked about in the course). Filtering that file into an appropriate loop, display all values with that file. Finally, once complete, write a message with the time/date stamp to the file and close the descriptor.
 ~~~
-vagrant@ubuntu-xenial:~/task17$ ln -s test1 file_link
-vagrant@ubuntu-xenial:~/task17$ ll
-total 8
-drwxrwxr-x  2 vagrant vagrant 4096 Jun 13 00:24 ./
-drwxr-xr-x 11 vagrant vagrant 4096 Jun 13 00:21 ../
-lrwxrwxrwx  1 vagrant vagrant    5 Jun 13 00:24 file_link -> test1
--rw-rw-r--  1 vagrant vagrant    0 Jun 13 00:21 test1
--rw-rw-r--  1 vagrant vagrant    0 Jun 13 00:21 test2
-~~~
-~~~
-vagrant@ubuntu-xenial:~/task17$ ln -sf test2 file_link
-vagrant@ubuntu-xenial:~/task17$ ll
-total 8
-drwxrwxr-x  2 vagrant vagrant 4096 Jun 13 00:25 ./
-drwxr-xr-x 11 vagrant vagrant 4096 Jun 13 00:21 ../
-lrwxrwxrwx  1 vagrant vagrant    5 Jun 13 00:25 file_link -> test2
--rw-rw-r--  1 vagrant vagrant    0 Jun 13 00:21 test1
--rw-rw-r--  1 vagrant vagrant    0 Jun 13 00:21 test2
+#!/bin/bash
+# demo of reading and writing to a file using a file descriptor
+echo "Enter a file name to read: "
+read FILE
+exec 5<>$FILE
+
+while read -r SUPERHERO; do
+  echo "Superhero Name: $SUPERHERO"
+done <&5
+
+echo "File Was Read On: `date`" >&5
+exec 5>&-
 ~~~
 ***
 ### Exercise 18
-18) Имется список фалов с относительным путем и путем к каталогу в котором должна храниться символьная ссылка на файл. Создать символьные ссылки на эти файлы. 
+Create a simple text file at the command prompt. This file should contain three values - CPU, Memory and Disk space for an imaginary system, all on one line and delimited with a '|' character. Write a script to read that file and prompt the user for the delimiter value. Use that delimiter along with the IFS variable and read those delimited values into three appropriately named variables. Finally, display them with labels, one each per line. 
 ~~~
-vagrant@ubuntu-xenial:~$ tree dir1 dir2
-dir1
-├── file1
-├── file2
-└── file3
-dir2
-~~~
-~~~
-vagrant@ubuntu-xenial:~/dir2$ ln -s ../dir1/* /home/vagrant/dir2
-vagrant@ubuntu-xenial:~$ tree dir1 dir2
-dir1
-├── file1
-├── file2
-└── file3
-dir2
-├── file1 -> ../dir1/file1
-├── file2 -> ../dir1/file2
-└── file3 -> ../dir1/file3
+#!/bin/bash
+# delimiter example using IFS
+
+echo "Enter filename to parse: "
+read FILE
+echo "Enter the Delimiter: "
+read DELIM
+IFS="$DELIM"
+
+while read -r CPU MEMORY DISK; do
+  echo "CPU: $CPU"
+  echo "Memory: $MEMORY"
+  echo "Disk: $DISK"
+done <"$FILE"
 ~~~
 ***
 ### Exercise 19
-19) Скопировать директорию с учетом, что в ней существуют как прямые так относительные символьные ссылки на файлы и директории. Предполагается, что копирование выполняется for backup on a removable storage. (сделать в двух вариантах, без rsync и с rsync). 
+We need to create a menu for our users. Display a menu containing three choices AND a choice to allow them to exit. Display that menu and prompt for a choice. Upon choosing the value, it should simply clear the screen and redisplay the menu (loop until the exit choice is given). HOWEVER, we need to be sure that the end user cannot use CTL-C, CTL-Z or a KILL command to terminate the application. Add a 'trap' in the script to capture those attempts and provide instructions on how to exit the script using the menu choice instead.
 ~~~
-vagrant@ubuntu-xenial:~$ tree links2 destination
-links2
-├── file
-└── links
-    ├── link -> ../file
-    └── link2 -> ../file
-destination
+#!/bin/bash
+# example of trapping events and limiting the shell stopping
+clear
+trap 'echo " - Please Press Q to Exit.."' SIGINT SIGTERM SIGTSTP
+
+while [ "$CHOICE" != "Q" ] && [ "$CHOICE" != "q" ]; do
+  echo "MAIN MENU"
+  echo "========="
+  echo "1) Choice One"
+  echo "2) Choice Two"
+  echo "3) Choice Three"
+  echo "Q) Quit/Exit"
+  echo ""
+  read CHOICE
+  clear
+done
 ~~~
-Без rsync
+***
+### Exercise 20
+Create a script that accepts a command line parameter intended to be the name of a directory. With the script, attempt to change to the indicated directory, be sure to redirect errors to /dev/null on the command as we will be providing our own messaging. Test the results of the command to change directories. If it was successful, indicate success and display the contents of the directory. If it was not successful, indicate we cannot change directories and exit to the terminal with a custom exit code (less than 200).
 ~~~
-vagrant@ubuntu-xenial:~$ cp -r links2/* destination
-vagrant@ubuntu-xenial:~$ tree links2 destination
-links2
-├── file
-└── links
-    ├── link -> ../file
-    └── link2 -> ../file
-destination
-├── file
-└── links
-    ├── link -> ../file
-    └── link2 -> ../file
-~~~
-C rsync
-~~~
-vagrant@ubuntu-xenial:~$ rsync -r -l links2/* destination
-vagrant@ubuntu-xenial:~$ tree links2 destination
-links2
-├── file
-└── links
-    ├── link -> ../file
-    └── link2 -> ../file
-destination
-├── file
-└── links
-    ├── link -> ../file
-    └── link2 -> ../file
+#!/bin/bash
+# demo of using error handling with exit
+echo "Change to a directory and list the contents"
+DIRECTORY=$1
+cd $DIRECTORY 2>/dev/null
+
+if [ "$?" = "0" ]; then
+  echo "We can change into the directory $DIRECTORY, and here are the contents"
+  echo "`ls -al`"
+else
+  echo "Cannot change directories, exiting with an error and no listing"
+  exit 111
+fi
 ~~~
 ***
 ### Exercise 21
-21) В директории проекта преобразовать все относительные ссылки в прямые.
-~~~
-vagrant@ubuntu-xenial:~/task21$ tree
-.
-├── file
-└── sub1
-    └── sub2
-        └── s_link -> ../../file
-
-2 directories, 2 files
-~~~
-~~~
-vagrant@ubuntu-xenial:~/task21$ find ./ -type l -execdir bash -c 'ln -sfn "$(readlink -f "$0")" "$0"' {} \;
-vagrant@ubuntu-xenial:~/task21$ tree
-.
-├── file
-└── sub1
-    └── sub2
-        └── s_link -> /home/vagrant/task21/file
-
-2 directories, 2 files
-~~~
-***
-### Exercise 22
-22) В директории проекта преобразовать все прямые ссылки в относительные для директории проекта.
+Create a simple script containing a single function. This function should display a message to clearly indicate it was generated when the function was run. Then, display another message outside the function clearly indicating it was generated outside of it.
 ~~~
 vagrant@ubuntu-xenial:~/task22$ tree
 .

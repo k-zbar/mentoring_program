@@ -3,7 +3,7 @@
 ## Bash tasks
 ***
 ### Exercise 1
-1) Create a script that, when run, will display the following environment variables to the console:
+Create a script that, when run, will display the following environment variables to the console:
 - USER
 - HOME
 - HISTCONTROL
@@ -25,7 +25,7 @@ echo ""
 ~~~
 ***
 ### Exercise 2
-2) Write a script that sets FOUR variables:
+Write a script that sets FOUR variables:
 - MYUSERNAME
 - MYPASSWORD
 - STARTOFSCRIPT
@@ -43,7 +43,7 @@ echo "I ended this script at: $ENDOFSCRIPT"
 ~~~
 ***
 ### Exercise 3
-3) Develop a script that creates, sets and displays two variables to the terminal when run. Within this script, add comments to explain what the script is doing, what each variable is and, using inline comments, what each command is doing.
+Develop a script that creates, sets and displays two variables to the terminal when run. Within this script, add comments to explain what the script is doing, what each variable is and, using inline comments, what each command is doing.
 ~~~
 #!/bin/bash
 # This line is intended to be used as a general description of the script
@@ -57,7 +57,7 @@ echo "This is when the script was run: $DATETIMESTAMP" # this is the timestamp o
 ~~~
 ***
 ### Exercise 4
-4) Create a simple script that does the following:
+Create a simple script that does the following:
 - Echo a full sentence to the terminal
 - Echo a different full sentence, but redirect it to /dev/null
 Run and display the results and make sure the statements appear where intended.
@@ -69,7 +69,7 @@ echo "This is going into the black hole" >> /dev/null
 ~~~
 ***
 ### Exercise 5
-5) Write a script that runs three commands:
+Write a script that runs three commands:
 - Evaluate an arithmetic expression
 - Attempt to remove a file that does not exist in the current directory
 - Evaluate another arithmetic expression
@@ -87,7 +87,7 @@ echo $?
 ~~~
 ***
 ### Exercise 6
-6) Найти дубликаты файлов в заданных каталогах. Вначале сравнивать по размеру, затем по варианту (выбрать хешь функцию: CRC32, MD5, SHA-1, sha224sum). Результат должен быть отсортирован по имени файла. 
+Найти дубликаты файлов в заданных каталогах. Вначале сравнивать по размеру, затем по варианту (выбрать хешь функцию: CRC32, MD5, SHA-1, sha224sum). Результат должен быть отсортирован по имени файла. 
 ~~~
 vagrant@ubuntu-xenial:~/task_5$ cat file1.txt file2.txt file3.txt file4.txt
 Hello world
@@ -104,7 +104,7 @@ vagrant@ubuntu-xenial:~/task_5$ find . -type f -exec du -h {} \; | sort
 ~~~
 ***
 ### Exercise 7
-7) Найти по имени файла и его пути все символьные ссылки на него. 
+Найти по имени файла и его пути все символьные ссылки на него. 
 ~~~
 vagrant@ubuntu-xenial:~$ touch file7.txt
 vagrant@ubuntu-xenial:~$ ln -s file7.txt f_link
@@ -123,7 +123,7 @@ vagrant@ubuntu-xenial:~$ find -lname file7.txt
 ~~~
 ***
 ### Exercise 8
-8) Найти по имени файла и его пути все жесткие ссылки на него. 
+Найти по имени файла и его пути все жесткие ссылки на него. 
 ~~~
 vagrant@ubuntu-xenial:~$ touch file8.txt
 vagrant@ubuntu-xenial:~$ ln file8.txt f_h_link
@@ -145,7 +145,7 @@ vagrant@ubuntu-xenial:~$ find -samefile file8.txt
 ~~~
 ***
 ### Exercise 9
-9) Имеется только inode файла найти все его имена. 
+Имеется только inode файла найти все его имена. 
 ~~~
 vagrant@ubuntu-xenial:~/task9$ touch file9.txt
 vagrant@ubuntu-xenial:~/task9$ ln file9.txt h_file9.txt
@@ -161,7 +161,7 @@ vagrant@ubuntu-xenial:~$ find -inum 277177
 ~~~
 ***
 ### Exercise 10
-10) Имеется только inode файла найти все его имена. Учтите, что может быть примонтированно несколько разделов.
+Имеется только inode файла найти все его имена. Учтите, что может быть примонтированно несколько разделов.
 ~~~
 vagrant@ubuntu-xenial:~$ find -mount -inum 277177
 ./task9/file9.txt
@@ -169,7 +169,7 @@ vagrant@ubuntu-xenial:~$ find -mount -inum 277177
 ~~~
 ***
 ### Exercise 11
-11) Корректно удалить файл с учетом возможности существования символьных или жестких ссылок.
+Корректно удалить файл с учетом возможности существования символьных или жестких ссылок.
 ~~~
 vagrant@ubuntu-xenial:~$ ls -li
 total 16
@@ -192,7 +192,7 @@ total 0
 ~~~
 ***
 ### Exercise 12
-12) Рекурсивно изменить права доступа к файлам (задана маска файла) в заданной директории.
+Рекурсивно изменить права доступа к файлам (задана маска файла) в заданной директории.
 ~~~
 vagrant@ubuntu-xenial:~$ ll -Rl task12/
 task12/:

@@ -59,8 +59,7 @@ echo "This is when the script was run: $DATETIMESTAMP" # this is the timestamp o
 ### Exercise 4
 Create a simple script that does the following:
 - Echo a full sentence to the terminal
-- Echo a different full sentence, but redirect it to /dev/null
-<br/>
+- Echo a different full sentence, but redirect it to /dev/null<br/>
 Run and display the results and make sure the statements appear where intended.
 ~~~
 #!/bin/bash
@@ -73,7 +72,7 @@ echo "This is going into the black hole" >> /dev/null
 Write a script that runs three commands:
 - Evaluate an arithmetic expression
 - Attempt to remove a file that does not exist in the current directory
-- Evaluate another arithmetic expression
+- Evaluate another arithmetic expression<br/>
 Immediately after each command, echo the exit status of that command to the terminal using the appropriate variable to show success and failure exit codes.
 ~~~ 
 #!/bin/bash
@@ -88,39 +87,42 @@ echo $?
 ~~~
 ***
 ### Exercise 6
-Найти дубликаты файлов в заданных каталогах. Вначале сравнивать по размеру, затем по варианту (выбрать хешь функцию: CRC32, MD5, SHA-1, sha224sum). Результат должен быть отсортирован по имени файла. 
+Write a script that evaluates and displays the following arithmetic operations:
+- Add two numbers
+- Add two numbers and multiply by a third, do not group anything 
+- Add two numbers, grouped (changing order of precedence) and multiply by a third<br/>
+Keep in mind special characters and/or escape characters as needed.
 ~~~
-vagrant@ubuntu-xenial:~/task_5$ cat file1.txt file2.txt file3.txt file4.txt
-Hello world
-Here is string
-Hello world
-Pretty good
-~~~
-~~~
-vagrant@ubuntu-xenial:~/task_5$ find . -type f -exec du -h {} \; | sort
-4.0K    ./file1.txt
-4.0K    ./file2.txt
-4.0K    ./file3.txt
-4.0K    ./file4.txt
+#!/bin/bash
+# expression evaluation
+expr 2 + 2
+expr 2 + 2 \* 4
+expr \( 2 + 2 \) \* 4
 ~~~
 ***
 ### Exercise 7
-Найти по имени файла и его пути все символьные ссылки на него. 
+Write a script that will use command substitution to dynamically set variable values:
+- TODAYSDATE - should contain date/time stamp when executed
+- USERFILES - the results of a find run on the /home directory to list all files owned by 'user' account
+***
+Additionally, set two aliases:
+- TODAY - should be an alias for the 'date' command
+- UFILES - should be an alias to the full command used to set the variable USERFILES above<br/>
+Finally, display all variables and alias values when the script is run. 
 ~~~
-vagrant@ubuntu-xenial:~$ touch file7.txt
-vagrant@ubuntu-xenial:~$ ln -s file7.txt f_link
-vagrant@ubuntu-xenial:~$ ls -li
-total 12
-  2303 -rw-rw-r-- 1 vagrant vagrant    0 Feb 14 12:27 demo-dev
-256069 drwxrwxr-x 3 vagrant vagrant 4096 Jun 12 22:26 demo-devops
-   126 -rw-rw-r-- 1 vagrant vagrant    0 Jun 12 22:47 file7.txt
-   129 lrwxrwxrwx 1 vagrant vagrant    9 Jun 12 22:47 f_link -> file7.txt
-   122 -rw-rw-r-- 1 vagrant vagrant  536 Jun 12 21:00 out.txt
-256035 drwxrwxr-x 2 vagrant vagrant 4096 Jun 12 22:42 task_5
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ find -lname file7.txt
-./f_link
+#!/bin/bash
+# This script is intended to show how to do simple substitution
+shopt -s expand_aliases
+alias TODAY="date"
+alias UFILES="find /home -user user"
+TODAYSDATE=`date`
+USERFILES=`find /home -user user`
+echo "Today's Date: $TODAYSDATE"
+echo "All Files Owned by USER: $USERFILES"
+A=`TODAY`
+B=`UFILES`
+echo "With Alias, TODAY is: $A"
+echo "With Alias, UFILES is: $B"
 ~~~
 ***
 ### Exercise 8

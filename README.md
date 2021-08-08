@@ -59,8 +59,7 @@ echo "This is when the script was run: $DATETIMESTAMP" # this is the timestamp o
 ### Exercise 4
 Create a simple script that does the following:
 - Echo a full sentence to the terminal
-- Echo a different full sentence, but redirect it to /dev/null
-***
+- Echo a different full sentence, but redirect it to /dev/null__
 Run and display the results and make sure the statements appear where intended.
 ~~~
 #!/bin/bash

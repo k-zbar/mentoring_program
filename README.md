@@ -2,7 +2,7 @@
 
 ## Bash tasks
 ***
-### Exercise 1
+### Exercise 1 - Display Environment Variables
 Create a script that, when run, will display the following environment variables to the console:
 - USER
 - HOME
@@ -24,7 +24,7 @@ echo "Your Terminal Session Type is: $TERM"
 echo ""
 ~~~
 ***
-### Exercise 2
+### Exercise 2 - Setting and Using Variables in Scripts
 Write a script that sets FOUR variables:
 - MYUSERNAME
 - MYPASSWORD
@@ -42,7 +42,7 @@ ENDOFSCRIPT=`date`
 echo "I ended this script at: $ENDOFSCRIPT"
 ~~~
 ***
-### Exercise 3
+### Exercise 3 - Using Comments
 Develop a script that creates, sets and displays two variables to the terminal when run. Within this script, add comments to explain what the script is doing, what each variable is and, using inline comments, what each command is doing.
 ~~~
 #!/bin/bash
@@ -56,7 +56,7 @@ DATETIMESTAMP=`date`
 echo "This is when the script was run: $DATETIMESTAMP" # this is the timestamp of run
 ~~~
 ***
-### Exercise 4
+### Exercise 4 - Using /dev/null
 Create a simple script that does the following:
 - Echo a full sentence to the terminal
 - Echo a different full sentence, but redirect it to /dev/null<br/>
@@ -68,7 +68,7 @@ echo "This is displaying on the console"
 echo "This is going into the black hole" >> /dev/null
 ~~~
 ***
-### Exercise 5
+### Exercise 5 - Exit Status Types
 Write a script that runs three commands:
 - Evaluate an arithmetic expression
 - Attempt to remove a file that does not exist in the current directory
@@ -86,7 +86,7 @@ expr 10 + 10
 echo $?
 ~~~
 ***
-### Exercise 6
+### Exercise 6 - Evaluating Arithmetic Expressions
 Write a script that evaluates and displays the following arithmetic operations:
 - Add two numbers
 - Add two numbers and multiply by a third, do not group anything 
@@ -100,7 +100,7 @@ expr 2 + 2 \* 4
 expr \( 2 + 2 \) \* 4
 ~~~
 ***
-### Exercise 7
+### Exercise 7 - Command Substitution
 Write a script that will use command substitution to dynamically set variable values:
 - TODAYSDATE - should contain date/time stamp when executed
 - USERFILES - the results of a find run on the /home directory to list all files owned by 'user' account
@@ -125,7 +125,7 @@ echo "With Alias, TODAY is: $A"
 echo "With Alias, UFILES is: $B"
 ~~~
 ***
-### Exercise 8
+### Exercise 8 - Interactive Scripting
 Create a script that interacts with the user. You will want to prompt the user to enter the following information (which you will capture and place into the following variables):
 - FIRSTNAME
 - LASTNAME
@@ -146,7 +146,7 @@ read USERAGE
 echo "In 10 Years, You will be `expr $USERAGE + 10` years old."
 ~~~
 ***
-### Exercise 9
+### Exercise 9 - Using Arrays
 Write a script intended to iterate through an array called SERVERLIST containing at least four values (server names). Display all four values to the terminal when run. 
 ~~~
 #!/bin/bash
@@ -159,7 +159,7 @@ for INDEX in ${SERVERLIST[@]}; do
 done
 ~~~
 ***
-### Exercise 10
+### Exercise 10 - Passing Variables to Scripts at the Command Line
 Create a script that, when run, will accept two command line values as arguments. These arguments should be a username and password and assigned to two variables in the script named appropriately. Finally, echo those values out to the terminal when run to indicate they were read and assigned as expected.
 ~~~
 #!/bin/bash
@@ -169,7 +169,7 @@ PASSWORD=$2
 echo "The following Username is $USERNAME and Password is $PASSWORD"
 ~~~
 ***
-### Exercise 11
+### Exercise 11 - The If Statement
 Create a script that interacts with the user. Prompt them to guess a secret number between 1 and 5. Read the guess from the terminal and assign it to a variable. Using the 'if' statement from the course, test that value to determine if they guessed the right number (you choose the correct value). If they do, display a success message, otherwise do nothing.
 ~~~
 #!/bin/bash
@@ -185,7 +185,7 @@ if [ $GUESS -eq 3 ]
 fi
 ~~~
 ***
-### Exercise 12
+### Exercise 12 - Using If/Then/Else
 Write a script that will prompt the user to enter a number between 1 and 3. Capture that number in a variable and then test that variable. Be sure to display the variable and it's value as appropriate within an if/then/else statement where the final statement will display if they did not enter a number between 1 and 3 telling them they failed to follow instructions. Redirect errors from each of the tests to /dev/null (to prevent script errors from showing if text is entered for example).
 ~~~
 #!/bin/bash
@@ -204,7 +204,7 @@ else
 fi
 ~~~
 ***
-### Exercise 13
+### Exercise 13 - The For Statement
 Write a script that assigns a variable that contains a list of all shell scripts (*.sh) in the current directory (command redirection). Using the 'for'statement from the course, iterate through that list of files and display the filename of each and cat out the contents to the terminal. 
 ~~~
 #!/bin/bash
@@ -217,7 +217,7 @@ for SCRIPT in $SHELLSCRIPTS; do
 done
 ~~~
 ***
-### Exercise 14
+### Exercise 14 - Using the Case Statement
 Develop a simple three item menu to display on the terminal. Your script, upon display of the menu, should prompt the user to choose one of the three available options. Using the 'case' statement from the course, display three unique messages depending on which number they chose, with a catch all message letting them know if they went outside the bounds of instructions.
 ~~~
 #!/bin/bash
@@ -244,7 +244,7 @@ case $MENUCHOICE in
 esac
 ~~~
 ***
-### Exercise 15
+### Exercise 15 - While Looping
 Create a script that prompts the user for a number. That number is to be used to display a simple message to the terminal X number of times (where X is the number captured from the user input). The message should include an indication of the number for each count the message is displayed. 
 ~~~
 #!/bin/bash
@@ -259,7 +259,7 @@ do
 done
 ~~~
 ***
-### Exercise 16
+### Exercise 16 - Reading Files
 Create a simple text file containing a list of super heros (or some names if preferred), use at least four values, one per line in the file. Write a bash shell script that then reads that file and displays it line by line on the terminal window. 
 ~~~
 #!/bin/bash
@@ -271,7 +271,7 @@ while read -r SUPERHERO; do
 done < "$FILE"
 ~~~
 ***
-### Exercise 17
+### Exercise 17 - File Descriptors and Handles
 Create a simple text file containing a list of names (superheroes) and name it whatever you wish, should contain at least four values, one per line. Write a script that will use a file descriptor defined for both reading and writing to that file (pick an appropriate number greater than the system reserved handles as talked about in the course). Filtering that file into an appropriate loop, display all values with that file. Finally, once complete, write a message with the time/date stamp to the file and close the descriptor.
 ~~~
 #!/bin/bash
@@ -288,7 +288,7 @@ echo "File Was Read On: `date`" >&5
 exec 5>&-
 ~~~
 ***
-### Exercise 18
+### Exercise 18 - IFS and Delimiting
 Create a simple text file at the command prompt. This file should contain three values - CPU, Memory and Disk space for an imaginary system, all on one line and delimited with a '|' character. Write a script to read that file and prompt the user for the delimiter value. Use that delimiter along with the IFS variable and read those delimited values into three appropriately named variables. Finally, display them with labels, one each per line. 
 ~~~
 #!/bin/bash
@@ -307,7 +307,7 @@ while read -r CPU MEMORY DISK; do
 done <"$FILE"
 ~~~
 ***
-### Exercise 19
+### Exercise 19 - Traps and Signals
 We need to create a menu for our users. Display a menu containing three choices AND a choice to allow them to exit. Display that menu and prompt for a choice. Upon choosing the value, it should simply clear the screen and redisplay the menu (loop until the exit choice is given). HOWEVER, we need to be sure that the end user cannot use CTL-C, CTL-Z or a KILL command to terminate the application. Add a 'trap' in the script to capture those attempts and provide instructions on how to exit the script using the menu choice instead.
 ~~~
 #!/bin/bash
@@ -328,7 +328,7 @@ while [ "$CHOICE" != "Q" ] && [ "$CHOICE" != "q" ]; do
 done
 ~~~
 ***
-### Exercise 20
+### Exercise 20 - Error Handling with Exit
 Create a script that accepts a command line parameter intended to be the name of a directory. With the script, attempt to change to the indicated directory, be sure to redirect errors to /dev/null on the command as we will be providing our own messaging. Test the results of the command to change directories. If it was successful, indicate success and display the contents of the directory. If it was not successful, indicate we cannot change directories and exit to the terminal with a custom exit code (less than 200).
 ~~~
 #!/bin/bash
@@ -346,7 +346,7 @@ else
 fi
 ~~~
 ***
-### Exercise 21
+### Exercise 21 - Creating a Function
 Create a simple script containing a single function. This function should display a message to clearly indicate it was generated when the function was run. Then, display another message outside the function clearly indicating it was generated outside of it.
 ~~~
 vagrant@ubuntu-xenial:~/task22$ tree
@@ -370,473 +370,294 @@ vagrant@ubuntu-xenial:~/task22$ tree
 2 directories, 2 files
 ~~~
 ***
-### Exercise 23
-23) В указанной директории найти все сломанные ссылки и удалить их. 
+### Exercise 22 - Variable Scope in Functions
+Create a script to demonstrate the visibility of variables and when they are available within a script and its functions. Define a global variable, a function that defines a local variable and then display both BEFORE calling the function, call the function, then display both AFTER calling the function. 
 ~~~
-vagrant@ubuntu-xenial:~/links$ ll
-total 8
-drwxrwxr-x 2 vagrant vagrant 4096 Feb 15 18:22 ./
-drwxr-xr-x 6 vagrant vagrant 4096 Feb 15 18:15 ../
-lrwxrwxrwx 1 vagrant vagrant   13 Feb 15 18:22 brake_link_1 -> no_exist_file
-lrwxrwxrwx 1 vagrant vagrant   13 Feb 15 18:22 brake_link_2 -> no_exist_file
-lrwxrwxrwx 1 vagrant vagrant   13 Feb 15 18:22 brake_link_3 -> no_exist_file
--rw-rw-r-- 1 vagrant vagrant    0 Feb 15 18:22 file
-lrwxrwxrwx 1 vagrant vagrant    4 Feb 15 18:22 good_link -> file
-~~~
-~~~
-vagrant@ubuntu-xenial:~/links$ find . -xtype l -delete
-vagrant@ubuntu-xenial:~/links$ ll
-total 8
-drwxrwxr-x 2 vagrant vagrant 4096 Feb 15 18:22 ./
-drwxr-xr-x 6 vagrant vagrant 4096 Feb 15 18:15 ../
--rw-rw-r-- 1 vagrant vagrant    0 Feb 15 18:22 file
-lrwxrwxrwx 1 vagrant vagrant    4 Feb 15 18:22 good_link -> file
-~~~
-***
-### Exercise 24
-24) Распаковать из архива tar, gz, bz2, lz, lzma, xz, Z определенный каталог в указанное место. 
-~~~
-vagrant@ubuntu-xenial:~/archives$ ll
-total 40
-drwxrwxr-x  2 root root  4096 Feb 13 14:37 ./
-drwxr-xr-x 10 root root  4096 Feb 13 14:10 ../
--rw-rw-r--  1 root root  6276 Feb 13 14:55 file.Z
--rw-rw-r--  1 root root    14 Feb 13 14:23 bzip2.bz2
--rw-rw-r--  1 root root    23 Feb 13 14:22 gz.gz
--rw-rw-r--  1 root root    36 Feb 13 14:25 lz.lz
--rw-rw-r--  1 root root    18 Feb 13 14:26 lzma.lzma
--rw-rw-r--  1 root root 10240 Feb 13 14:13 tar.tar
--rw-rw-r--  1 root root    32 Feb 13 14:27 xz.xz
-~~~
-~~~
-vagrant@ubuntu-xenial:~/archives$ tar -xvf tar.tar
-vagrant@ubuntu-xenial:~/archives$ gunzip gz.gz
-vagrant@ubuntu-xenial:~/archives$ bzip2 -d bzip2.bz2
-vagrant@ubuntu-xenial:~/archives$ lzip -d lz.lz
-vagrant@ubuntu-xenial:~/archives$ lzma -d lzma.lzma
-vagrant@ubuntu-xenial:~/archives$ unxz xz.xz
-vagrant@ubuntu-xenial:~/archives$ uncompress file.Z
-~~~
-tar
-~~~
-vagrant@ubuntu-xenial:~/archives$ tar -cvf tar.tar dir1 dir2
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar dir2
-~~~
-gz
-~~~
-vagrant@ubuntu-xenial:~/archives$ gzip tar.tar
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar.gz dir1
-~~~
-bz2
-~~~
-vagrant@ubuntu-xenial:~/archives$ bzip2 tar.tar
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar.bz2 dir1
-~~~
-lz
-~~~
-vagrant@ubuntu-xenial:~/archives$ lzip tar.tar
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar.lz dir1
-~~~
-lzma
-~~~
-vagrant@ubuntu-xenial:~/archives$ lzma tar.tar
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar.lzma dir2
-~~~
-xz
-~~~
-vagrant@ubuntu-xenial:~/archives$ xz tar.tar
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar.xz dir2
-~~~
-Z
-~~~
-vagrant@ubuntu-xenial:~/archives$ compress tar.tar
-vagrant@ubuntu-xenial:~/archives$ tar -C /home/archives2 -xf tar.tar.Z dir2
-~~~
-***
-### Exercise 25
-25) Рекурсивно скопировать структуру каталогов из указанной директории (без файлов). 
-~~~
-vagrant@ubuntu-xenial:~$ tree dir1 destination
-dir1
-├── dir2
-│   ├── dir3
-│   │   └── file3
-│   └── file2
-└── file1
-destination
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ rsync -av -f"+ */" -f"- *" "dir1" "destination"
-sending incremental file list
-dir1/
-dir1/dir2/
-dir1/dir2/dir3/
+#!/bin/bash
+# demonstrating variable scope
+# global variable declaration
+GLOBALVAR="Globally Visible"
 
-sent 134 bytes  received 28 bytes  324.00 bytes/sec
-total size is 0  speedup is 0.00
-vagrant@ubuntu-xenial:~$ tree dir1 destination
-dir1
-├── dir2
-│   ├── dir3
-│   │   └── file3
-│   └── file2
-└── file1
-destination
-└── dir1
-    └── dir2
-        └── dir3
+# function definitions - start
+# sample function for function variable scope
 
-5 directories, 3 files
-~~~
-~~~
-vagrant@ubuntu-xenial:~/task25$ find folder1/ -type d -exec bash -c 'mkdir destination/{}' \;
-vagrant@ubuntu-xenial:~/task25$ tree
-.
-├── destination
-│   └── folder1
-│       └── folder2
-│           └── folder3
-└── folder1
-    ├── file1
-    └── folder2
-        ├── file2
-        └── folder3
-            └── file3
+funcExample () {
+  # local variable to the function
+  LOCALVAR="Locally Visible"
+  echo "From within the function, the variable is $LOCALVAR..."
+}
 
-7 directories, 3 files
+# functions definitions - stop
+# script - start
+clear
+echo "This step happens first..."
+echo ""
+echo "GLOBAL variable = $GLOBALVAR (before the function call)"
+echo "LOCALVAR variable = $LOCALVAR (before the function call)"
+echo ""
+echo "Calling Function - funcExample()"
+echo ""
+funcExample
+echo ""
+echo "Function has been called..."
+echo ""
+echo "GLOBAL variable = $GLOBALVAR (after the function call)"
+echo "LOCALVAR variable = $LOCALVAR (after the function call)"
 ~~~
 ***
-### Exercise 26
-26) Вывести список всех пользователей системы (только имена) по алфавиту.
+### Exercise 23 - Functions with Parameters
+Write a script that takes a single command line parameter intended to be the user's first name. Prompt the user for their age and read that into a variable. Using the appropriate method to make that command line parameter visible to a function, pass the age captured to the function and display a message to the user addressing them by name and confirming their age, add a calculation of their age in number of days. 
 ~~~
-vagrant@ubuntu-xenial:~/task17$ cat /etc/passwd | cut -d: -f1 | sort
-_apt
-backup
-bin
-daemon
-dnsmasq
-games
-gnats
-irc
-list
-lp
-lxd
-mail
-man
-messagebus
-news
-nobody
-pollinate
-proxy
-root
-sshd
-sync
-sys
-syslog
-systemd-bus-proxy
-systemd-network
-systemd-resolve
-systemd-timesync
-ubuntu
-uucp
-uuidd
-vagrant
-www-data
+#!/bin/bash
+# this demo is for functional parameter passing
+# global variable
+USERNAME=$1
+# function definitions - start
+
+# calculate age in days
+funcAgeInDays () {
+  echo "Hello $USERNAME, You are $1 Years Old."
+  echo "That makes you approximately `expr $1 \* 365` days old..."
+}
+
+# function definitions - stop
+# scrip - start
+clear
+echo "Enter Your Age: "
+read USERAGE
+
+# calculate the number of days
+funcAgeInDays $USERAGE
 ~~~
 ***
-### Exercise 27
-27) Вывести список всех системных пользователей системы отсортированных по id, в формате: login id. 
+### Exercise 24 - Nested Functions
+We are going to use nested functions to simulate the kind of abstraction you find in many object oriented languages. Create the following structures in your script:
+- a function that defines two local variables to hole the number of arms and legs that a human being has
+- nested functions, one for each a male and female, that contain the appropriate number of beards that each gender has
+- capture the gender as a command line parameter
+- test the command line parameter and call the appropriate functions in order to display the characteristics of the indicated gender
 ~~~
-vagrant@ubuntu-xenial:~/task17$ cat /etc/passwd | egrep "x:(0?[1-9]|[1-9][0-9]):" | cut -d: -f1,3 | tr -s ':' ' ' | sort -k 2n
-daemon 1
-bin 2
-sys 3
-sync 4
-games 5
-man 6
-lp 7
-mail 8
-news 9
-uucp 10
-proxy 13
-www-data 33
-backup 34
-list 38
-irc 39
-gnats 41
-~~~
-***
-### Exercise 28
-28) Вывести список всех пользователей системы (только имена) отсортированные по id.
-~~~
-vagrant@ubuntu-xenial:~$ cat /etc/passwd | egrep "x:(0?[1-9]|[1-9][0-9]):" | cut -d: -f1,3 | tr -s ':' ' ' | sort -k 2n | cut -d' ' -f1
-daemon
-bin
-sys
-sync
-games
-man
-lp
-mail
-news
-uucp
-proxy
-www-data
-backup
-list
-irc
-gnats
-~~~
-***
-### Exercise 29
-29) Вывести всех пользователей которые не имеют право авторизовываться или не имеют право авторизовываться в системе (две команды).
-~~~
-vagrant@ubuntu-xenial:~$ cat /etc/passwd | cut -d: -f1,7 | tr -s ':' ' ' | grep nologin
-daemon /usr/sbin/nologin
-bin /usr/sbin/nologin
-sys /usr/sbin/nologin
-games /usr/sbin/nologin
-man /usr/sbin/nologin
-lp /usr/sbin/nologin
-mail /usr/sbin/nologin
-news /usr/sbin/nologin
-uucp /usr/sbin/nologin
-proxy /usr/sbin/nologin
-www-data /usr/sbin/nologin
-backup /usr/sbin/nologin
-list /usr/sbin/nologin
-irc /usr/sbin/nologin
-gnats /usr/sbin/nologin
-nobody /usr/sbin/nologin
-sshd /usr/sbin/nologin
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ cat /etc/passwd | cut -d: -f1,7 | tr -s ':' ' ' | grep -v nologin
-root /bin/bash
-sync /bin/sync
-systemd-timesync /bin/false
-systemd-network /bin/false
-systemd-resolve /bin/false
-systemd-bus-proxy /bin/false
-syslog /bin/false
-_apt /bin/false
-lxd /bin/false
-messagebus /bin/false
-uuidd /bin/false
-dnsmasq /bin/false
-pollinate /bin/false
-vagrant /bin/bash
-ubuntu /bin/bash
+#!/bin/bash
+# demo of nested functions and some abstraction
+# global variable
+GENDER=$1
+
+# function definitions - start
+
+# create a human being
+funcHuman () {
+  ARMS=2
+  LEGS=2
+  echo "A Human has $ARMS arms and $LEGS legs - but what gender are we?"
+  echo ""
+
+  funcMale () {
+    BEARD=1
+    echo "This man has $ARMS arms and $LEGS legs, with $BEARD beard(s)..."
+    echo ""
+  }
+  funcFemale () {
+    BEARD=0
+    echo "This woman has $ARMS arms and $LEGS legs, with $BEARD beard(s)..."
+    echo ""
+  }
+}
+
+# function definitions - stop
+
+# script - start
+clear
+echo "Determining the characteristics of the gender $GENDER"
+echo ""
+
+# determine the actual gender and display the characteristics
+if [ "$GENDER" == "male" ]; then
+  funcHuman
+  funcMale
+else
+  funcHuman
+  funcFemale
+fi
 ~~~
 ***
-### Exercise 30
-30) Вывести всех пользователей которые (имеют/не имеют) терминала (bash, sh, zsh and etc.) (две команды).
+### Exercise 25 - Simple Infobox
+We want to display a simple Information Box for our end users prior to executing a command. Accept one command line parameter when executing the script. This box should use the dialog control as shown in the course and display for a total of 5 seconds. The title and message in the box should be passed into the function but can be whatever you like that will warn the user if the parameter passed in was 'shutdown', otherwise an innocuous message can be displayed.
 ~~~
-vagrant@ubuntu-xenial:~$ cat /etc/passwd | cut -d: -f1,7 | tr -s ':' ' ' | grep bash | cut -d' ' -f1
-root
-vagrant
-ubuntu
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ cat /etc/passwd | cut -d: -f1,7 | tr -s ':' ' ' | grep -v bash  | cut -d' ' -f1
-daemon
-bin
-sys
-sync
-games
-man
-lp
-mail
-news
-uucp
-proxy
-www-data
-backup
-list
-irc
-gnats
-nobody
-systemd-timesync
-systemd-network
-systemd-resolve
-systemd-bus-proxy
-syslog
-_apt
-lxd
-messagebus
-uuidd
-dnsmasq
-sshd
-pollinate
+#!/bin/bash
+# demo of a simple info box with dialog and ncurses
+
+# global variables / default values
+INFOBOX=${INFOBOX=dialog}
+TITLE="Default"
+MESSAGE="Something to say"
+XCOORD=10
+YCOORD=20
+
+# function declarations - start
+# display the infobox and our mesage
+funcDisplayInfoBox () {
+  $INFOBOX --title "$1" --infobox "$2" "$3" "$4"
+  sleep "$5"
+}
+
+# function declarations - stop
+# script - start
+
+if [ "$1" == "shutdown" ]; then
+  funcDisplayInfoBox "WARNING!" "We are SHUTTING DOWN the System..." "11" "21" "5"
+  echo "Shutting Down!"
+else
+  funcDisplayInfoBox "Information..." "You are not doing anything fun..." "11" "21" "5"
+  echo "Not doing anything..."
+fi
+
+# script - stop
 ~~~
 ***
-### Exercise 31
-31) Со страницы из интернета закачать все ссылки, которые на странице. Закачивать параллельно. Использовать curl и wget. Дать рекомендации по использованию.
+### Exercise 26 - Displaying a Message Box
+We want to display a simple Message Box for our end users prior to executing a command. Accept one command line parameter when executing the script. This box should use the dialog control as shown in the course and display until the OK button is clicked or selected. The title and message in the box should be passed into the function but can be whatever you like that will warn the user if the parameter passed in was 'shutdown', otherwise an innocuous message can be displayed. 
+~~~
+#!/bin/bash
+# demo of a message box with an OK button
+
+# global variables / default variables
+MSGBOX=${MSGBOX=dialog}
+TITLE="Default"
+MESSAGE="Some Message"
+XCOORD=10
+YCOORD=20
+
+# function declarations - start
+
+# display the message box with our message
+funcDisplayMsgBox () {
+  $MSGBOX --title "$1" --msgbox "$2" "$3" "$4"
+}
+
+# function declarations - stop
+
+# script - start
+if [ "$1" == "shutdown" ]; then
+  funcDisplayMsgBox "WARNING!" "Please press OK when you are ready to shut down the system" "10" "20"
+  echo "SHUTTING DOWN NOW!!!"
+else
+  funcDisplayMsgBox "Boring..." "You are not asking for anything fun..." "10" "20"
+  echo "Not doing anything, back to regular scripting..."
+fi
+
+# script - stop
+~~~
+***
+### Exercise 27 - A User Input Box
+In this script, we will be using an Input Box constructed from the dialog control, to prompt the user for a filename to display to the terminal. Construct the input box within a function and capture the value input using the appropriate output method to a file. Read that file back in and attempt to display (cat) the file to the terminal or indicate that it does not exist.
+~~~
+#!/bin/bash
+# simple demo of an input dialog box
+
+# global variables / default values
+INPUTBOX=${INPUTBOX=dialog}
+TITLE="Default"
+MESSAGE="Something to display"
+XCOORD=10
+YCOORD=20
+
+# function declarations - start
+
+# display the input box
+funcDisplayInputBox () {
+  $INPUTBOX --title "$1" --inputbox "$2" "$3" "$4" 2>tmpfile.txt
+}
+
+# function declarations - stop
+# script - start
+funcDisplayInputBox "Display File Name" "Which file in the current directory do you want to display?" "10" "20"
+
+if [ "`cat tmpfile.txt`" != "" ]; then
+  cat "`cat tmpfile.txt`"
+else
+  echo "Nothing to do"
+fi
+ 
+# script - stop
+~~~
+***
+### Exercise 28 - Creating a Menu
+Using the dialog control from the course, develop a function inside a script that will display a menu containing at least four choices. Capture the indicated value using hte appropriate output to a file. Reading that file, test the value and display an appropriate message, different for each on.
+~~~
+#!/bin/bash
+# demo of a dialog box that will display a menu
+
+# global variables / default values
+MENUBOX=${MENUBOX=dialog}
+
+# function declarations - start
+
+# function to display a simple menu
+funcDisplayDialogMenu () {
+  $MENUBOX --title "[ M A I N   M E N U ]" --menu "Use UP/DOWN Arrows to Move and Select or the Number of Your Choice and Enter" 15 45 4 1 "Display Hello World" 2 "Display Goodbye World" 3 "Display Nothing" X "Exit" 2>choice.txt
+}
+
+# function declarations - stop
+
+# script - start
+funcDisplayDialogMenu
+
+case "`cat choice.txt`" in
+  1) echo "Hello World";;
+  2) echo "Goodbye World";;
+  3) echo "Nothing";;
+  X) echo "Exit";;
+esac
+
+# script - stop
+~~~
+***
+### Exercise 29 - 
+Вывести всех пользователей которые (имеют/не имеют) терминала (bash, sh, zsh and etc.) (две команды).
+~~~
+
+~~~
+***
+### Exercise 30 - 
+Со страницы из интернета закачать все ссылки, которые на странице. Закачивать параллельно. Использовать curl и wget. Дать рекомендации по использованию.
 curl
 ~~~
-vagrant@ubuntu-xenial:~$ curl https://davidwalsh.name/scrape-images-wget | grep -Po "(http|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?" | xargs -n 1 -P 2 -I{} wget {}
-~~~
-wget
-~~~
-vagrant@ubuntu-xenial:~$ wget -nd -r -P /home/vagrant/links/images -A jpeg,jpg,bmp,gif,png https://davidwalsh.name/scrape-images-wget
+
 ~~~
 ***
-### Exercise 32
-32) Остановить процессы, которые работают больше 5 дней. Команду ps не использовать.
+### Exercise 31 - 
+Остановить процессы, которые работают больше 5 дней. Команду ps не использовать.
 ~~~
-vagrant@ubuntu-xenial:~$ ps -wo pid,etime
-  PID     ELAPSED
- 2194    04:01:12
-21406       00:00
 
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ kill -9 $(find /proc -maxdepth 1 -user vagrant -type d -mmin +60 -exec basename {} \; | tail -n +3)
 ~~~
 ***
-### Exercise 33
-33) Имется дериктория, в которой, существуют папки и файлы (\*.txt & \*.jpeg). Файлы \*.txt и \*.jpeg однозначно связаны между собой по префиксу имени. Файлы могут находиться в различном месте данной директории. Нужно удалить все \*.jpeg для которых не существует файла \*.txt.
+### Exercise 32 - 
+Имется дериктория, в которой, существуют папки и файлы (\*.txt & \*.jpeg). Файлы \*.txt и \*.jpeg однозначно связаны между собой по префиксу имени. Файлы могут находиться в различном месте данной директории. Нужно удалить все \*.jpeg для которых не существует файла \*.txt.
 ~~~
-vagrant@ubuntu-xenial:~$ tree txt_jpeg
-txt_jpeg
-├── company_logo.jpeg
-├── no_link.jpeg
-├── sub_dir
-│   └── company_bio.txt
-├── user_bio.txt
-└── user_photo.jpeg
-~~~
-~~~
-vagrant@ubuntu-xenial:~/txt_jpeg$ rm -r $(find . -type f -exec basename {} \; | cut -d_ -f1 | sort | uniq -u)*
-vagrant@ubuntu-xenial:~$ tree txt_jpeg
-txt_jpeg
-├── company_logo.jpeg
-├── sub_dir
-│   └── company_bio.txt
-├── user_bio.txt
-└── user_photo.jpeg
+
 ~~~
 ***
-### Exercise 34
-34) Find your IP address using the command line.
+### Exercise 33 - 
+Find your IP address using the command line.
 ~~~
-vagrant@ubuntu-xenial:~$ ip a | grep inet | cut -d' ' -f6 | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
-127.0.0.1
-10.0.2.15
-10.23.104.28
+
 ~~~
 ***
-### Exercise 35
-35) Получить все ip-адресса из текстового файла.
+### Exercise 34 - 
+Получить все ip-адресса из текстового файла.
 ~~~
-vagrant@ubuntu-xenial:~$ touch ip_list.txt
-vagrant@ubuntu-xenial:~$ nano ip_list.txt
-vagrant@ubuntu-xenial:~$ cat ip_list.txt
-This file has lots of IP addresses:
-1. Ethernet adapter Ethernet0:
 
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 10.23.106.15
-
-2. Ethernet adapter Ethernet1:
-
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 33.119.205.147
-
-3. Ethernet adapter Ethernet2:
-
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 105.52.219.79
-
-4. Ethernet adapter Ethernet3:
-
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 53.89.250.195
-
-5. Ethernet adapter Ethernet4:
-
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 150.216.144.82
-
-6. Ethernet adapter Ethernet5:
-
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 241.25.212.52
-
-7. Ethernet adapter Ethernet6:
-
-   Connection-specific DNS Suffix  . : kyiv.epam.com
-   Link-local IPv6 Address . . . . . : fe80::2d9c:3c28:430e:e7af%15
-   IPv4 Address. . . . . . . . . . . : 187.150.175.127
-~~~
-~~~
-vagrant@ubuntu-xenial:~$ grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" ip_list.txt
-10.23.106.15
-33.119.205.147
-105.52.219.79
-53.89.250.195
-150.216.144.82
-241.25.212.52
-187.150.175.127
 ~~~
 ***
-### Exercise 36
-36) Найти все активные хосты использую/не используя nMAP в: 
+### Exercise 35 - 
+Найти все активные хосты использую/не используя nMAP в: 
 - заданной сети 
 ~~~
-vagrant@ubuntu-xenial:~$ echo 10.23.106.{1..254} | xargs -n1 -P0 ping -c1|grep "bytes from" | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
-10.23.106.15
-10.23.106.3
-10.23.106.5
-10.23.106.4
-10.23.106.6
-10.23.106.10
-10.23.106.14
-10.23.106.7
-10.23.106.9
-10.23.106.13
-10.23.106.8
-10.23.106.11
-10.23.106.12
-10.23.106.16
-10.23.106.17
-10.23.106.18
-10.23.106.19
-10.23.106.22
-10.23.106.24
-10.23.106.46
-~~~
-- списке IP (hosts-server.txt) 
-~~~
-vagrant@ubuntu-xenial:~$ cat /etc/hosts | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | xargs -n1 -P0 ping -c1 | grep "bytes from" | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
-127.0.0.1
-127.0.1.1
-~~~
-- заданной сети
-~~~
-vagrant@ubuntu-xenial:~$ nmap -sn -oG - -v 192.168.0.0/24 | grep 'Status: Up'
-Host: 10.23.106.8 ()  Status: Up
-Host: 10.23.106.22 ()  Status: Up
-~~~
-- списке IP (hosts-server.txt)
-~~~
-vagrant@ubuntu-xenial:~$ nmap -sn -oG - -v $(cat /etc/hosts | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}") | grep 'Status: Up'
-Host: 127.0.0.1 (localhost)     Status: Up
-Host: 127.0.1.1 (task1) Status: Up
+
 ~~~
 ***
-### Exercise 37
-37) Получить все поддомены из SSL сертификата.
+### Exercise 36 - 
+Получить все поддомены из SSL сертификата.
 ~~~
-vagrant@ubuntu-xenial:~$ openssl x509 -text -noout -in /etc/ssl/certs/*.crt | grep -oP '[a-z0-9]+\.[a-z]+\.[a-z]+' | cut -d. -f1
-www
-ocsp
-www
-www
+
 ~~~
